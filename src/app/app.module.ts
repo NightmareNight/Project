@@ -4,19 +4,22 @@ import { FormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksPageComponent } from './books-page/books-page.component';
+import { BucketComponent } from './bucket/bucket.component';
+import { BooksService } from './books-page/books.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BooksPageComponent
+    BooksPageComponent,
+    BucketComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

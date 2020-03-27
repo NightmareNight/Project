@@ -8,5 +8,30 @@
     {{book.author}}
     <br>
     Цена:
-    {{book.price}}
+    {{book.price}} р
+    <br>
+    В наличии:
+    {{book.amount}}
+    <br>
+    <button (click)="BuyBook(book.name)">Купить</button>
 </div>
+
+
+<h3>Форма добавления</h3>
+Название:
+<br>
+<input [(ngModel)]="BookName" placeholder="Название книги">
+<br>
+Автор:
+<br>
+<input [(ngModel)]="BookAuthor" placeholder="Имя автора">
+<br>
+Цена:
+<br>
+<input [(ngModel)]="BookPrice" placeholder="Цена" type="number">
+<br>
+В наличии:
+<br>
+<input [(ngModel)]="BookAmount" placeholder="В наличии" type="number">
+<br>
+<button (click)="AddBook()">Добавить книгу</button>
