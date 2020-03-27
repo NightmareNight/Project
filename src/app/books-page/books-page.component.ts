@@ -7,11 +7,10 @@ import { BooksService } from './books.service';
   selector: 'app-books-page',
   templateUrl: './books-page.component.html',
   styleUrls: ['./books-page.component.css'],
-  providers: [BooksService]
 })
 export class BooksPageComponent implements OnInit {
 
-  constructor(public service: BooksService, ) { }
+  constructor(public BooksInBucket: BooksService, ) { }
 
   ngOnInit() {
   }
@@ -35,37 +34,23 @@ export class BooksPageComponent implements OnInit {
   BuyBook(name) {
     let book = this.Books.find(book => book.name === name);
     if(book.amount > 0) {
-      let NewBook = {
-        name: name,
-        author: book.author,
-        price: book.price,
-        amount: 1,
+      let bookInBucket = this.BooksInBucket.Books.find(book => book.name === name);
+      if(book.name !== undefined){
+        bookInBucket.amount += 1;
       }
-      this.service.Books.push(NewBook)
-      console.log(this.service.Books);
+      else{
+        let NewBook = {
+          name: name,
+          author: book.author,
+          price: book.price,
+          amount: 1,
+        }
+        this.BooksInBucket.Books.push(NewBook)
+      }
+      book.amount = book.amount - 1;
     }
-    else if(book.amount < 0) {
+    else{
       alert('Товара нет в наличии!')
     }
-   
-    
-    //Находит продукт по его имени 
-    //let product = this.Products.find(product => product.name === name);
-   // console.log(product);
-    //Если количество продукта > 0
-   // if(product.amount > 0) {
-      // его  добавляют в корзину
-     // let newProduct = {
-       // name: name,
-      //  price: product.price,
-       // amount: 1,
-     // }
-     // this.productVKorzine.Products.push(newProduct)
-   // }
-    //else if(product.amount < 0) {
-     // console.log("SSSS")
-     // alert('Товар отсутствует!');
-   // }
-
   }
 }
