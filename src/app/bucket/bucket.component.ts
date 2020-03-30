@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { BooksService } from '../books-page/books.service';
 
 @Component({
@@ -8,12 +8,11 @@ import { BooksService } from '../books-page/books.service';
 })
 export class BucketComponent implements OnInit {
 
+  Books = this.service.Books;
+  Price$ = this.service.getCurrentPrice();
+
   constructor(public service: BooksService) { }
 
-  Books = this.service.Books;
-
   ngOnInit() {
-  }
-
- 
+  } 
 }

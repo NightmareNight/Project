@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { BooksService } from './books.service';
-
 
 
 @Component({
@@ -35,8 +34,11 @@ export class BooksPageComponent implements OnInit {
     let book = this.Books.find(book => book.name === name);
     if(book.amount > 0) {
       let bookInBucket = this.BooksInBucket.Books.find(book => book.name === name);
-      if(book.name !== undefined){
+      if(bookInBucket !== undefined){
         bookInBucket.amount += 1;
+
+        let newPrice = this.BooksInBucket.Price.getValue() + book.price
+        this.BooksInBucket.Price.next(newPrice);
       }
       else{
         let NewBook = {
@@ -46,6 +48,9 @@ export class BooksPageComponent implements OnInit {
           amount: 1,
         }
         this.BooksInBucket.Books.push(NewBook)
+
+        let newPrice = this.BooksInBucket.Price.getValue() + book.price
+        this.BooksInBucket.Price.next(newPrice);
       }
       book.amount = book.amount - 1;
     }

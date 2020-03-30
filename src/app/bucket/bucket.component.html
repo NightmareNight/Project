@@ -2,11 +2,16 @@
 <small>Добавленные товары</small>
 
 <div *ngFor="let book of Books">
-    {{book.name}}
+    Название: {{book.name}}
     <br>
-    {{book.author}}
+    Автор: {{book.author}}
     <br>
-    {{book.price}}
+    Цена за штуку: {{book.price}}
     <br>
-    {{book.amount}}
+    Кол-во: {{book.amount}}
+    <br>
+    Стоимость: {{book.amount * book.price}}
+</div>
+<div>
+    Общая стоимость: {{Price$ | async}}
 </div>
